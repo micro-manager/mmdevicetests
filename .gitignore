@@ -6,7 +6,4 @@ venv/
 
 build/
 dist/
-mmdevice.egg-info/
-
-mmdevice_wrap.*
-mmdevice.py
+pymmdevice.egg-info/
