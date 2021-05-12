@@ -27,10 +27,10 @@ class DeviceAdapterModule:
 
         self.dll.InitializeModuleData.restype = None
         self.dll.InitializeModuleData.argtypes = []
-        self.dll.CreateDevice.restype = ctypes.c_void_p # MM::Device*
+        self.dll.CreateDevice.restype = ctypes.c_void_p  # MM::Device*
         self.dll.CreateDevice.argtypes = [ctypes.c_char_p]
         self.dll.DeleteDevice.restype = None
-        self.dll.DeleteDevice.argtypes = [ctypes.c_void_p] # MM::Device*
+        self.dll.DeleteDevice.argtypes = [ctypes.c_void_p]  # MM::Device*
         self.dll.GetModuleVersion.restype = ctypes.c_long
         self.dll.GetModuleVersion.argtypes = []
         self.dll.GetDeviceInterfaceVersion.restype = ctypes.c_long
