@@ -10,7 +10,6 @@ mmdevice_extension = setuptools.Extension(
     swig_opts=[
         '-c++',
         '-py3',
-        '-builtin',
     ],
 )
 

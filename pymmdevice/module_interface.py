@@ -3,6 +3,24 @@ from . import mmdevice
 
 # Wrapper for module interface version 10
 
+_ptr_wrap_func = {
+    mmdevice.GenericDevice: mmdevice.wrap_ctypes_generic_pointer,
+    mmdevice.CameraDevice: mmdevice.wrap_ctypes_camera_pointer,
+    mmdevice.ShutterDevice: mmdevice.wrap_ctypes_shutter_pointer,
+    mmdevice.StageDevice: mmdevice.wrap_ctypes_stage_pointer,
+    mmdevice.XYStageDevice: mmdevice.wrap_ctypes_xystage_pointer,
+    mmdevice.StateDevice: mmdevice.wrap_ctypes_state_pointer,
+    mmdevice.SerialDevice: mmdevice.wrap_ctypes_serial_pointer,
+    mmdevice.AutoFocusDevice: mmdevice.wrap_ctypes_autofocus_pointer,
+    mmdevice.ImageProcessorDevice: mmdevice.wrap_ctypes_imageprocessor_pointer,
+    mmdevice.SignalIODevice: mmdevice.wrap_ctypes_signalio_pointer,
+    mmdevice.MagnifierDevice: mmdevice.wrap_ctypes_magnifier_pointer,
+    mmdevice.SLMDevice: mmdevice.wrap_ctypes_slm_pointer,
+    mmdevice.GalvoDevice: mmdevice.wrap_ctypes_galvo_pointer,
+    mmdevice.HubDevice: mmdevice.wrap_ctypes_hub_pointer,
+}
+
+
 class DeviceAdapterModule:
     def __init__(self, path):
         self.dll = ctypes.CDLL(path)
@@ -43,12 +61,21 @@ class DeviceAdapterModule:
     def CreateDevice(self, name):
         if not isinstance(name, bytes):
             name = name.encode()
-        # TODO Wrap using SWIG-generated interface
-        return self.dll.CreateDevice(name)
+        ptr = self.dll.CreateDevice(name)
+        if not ptr:
+            return None
+        type = self.GetDeviceType(name)
+        try:
+            wrap_func = _ptr_wrap_func[type]
+        except KeyError:
+            self.dll.DeleteDevice(ptr)
+            raise
+        ret = wrap_func(ptr)
+        ret._ctypes_address = ptr  # Save for DeleteDevice()
+        return ret
 
     def DeleteDevice(self, device):
-        # TODO Unwrap if device is SWIG-generated type
-        self.dll.DeleteDevice(device)
+        self.dll.DeleteDevice(device._ctypes_address)
 
     def GetModuleVersion(self):
         return int(self.dll.GetModuleVersion())
