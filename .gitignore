@@ -11,4 +11,4 @@ venv/
 
 build/
 dist/
-pymmdevice.egg-info/
+*.egg-info/

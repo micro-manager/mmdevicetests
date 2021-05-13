@@ -1,4 +1,4 @@
-import pymmdevice.mmdevice as mmdevice
+import mmdevicetests.mmdevice as mmdevice
 
 
 def test_constants():

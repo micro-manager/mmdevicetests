@@ -2,9 +2,9 @@ import setuptools
 import setuptools.command.build_py
 
 mmdevice_extension = setuptools.Extension(
-    'pymmdevice._mmdevice',
+    'mmdevicetests._mmdevice',
     sources=[
-        'pymmdevice/mmdevice.i',
+        'mmdevicetests/mmdevice.i',
         'mmCoreAndDevices/MMDevice/MMDevice.cpp',
     ],
     swig_opts=[
@@ -24,7 +24,7 @@ class build_py(setuptools.command.build_py.build_py):
 
 setuptools.setup(
     cmdclass={'build_py': build_py},
-    packages=['pymmdevice'],
+    packages=['mmdevicetests'],
     ext_modules=[mmdevice_extension],
     python_requires='>=3.6',
 )

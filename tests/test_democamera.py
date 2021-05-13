@@ -1,10 +1,10 @@
 import os
-import pymmdevice.mmdevice
-import pymmdevice.module_interface
+import mmdevicetests.mmdevice
+import mmdevicetests.module_interface
 import pytest
 
 
-democam_envvar = 'PYMMDEVICE_TEST_DEMOCAMERA_PATH'
+democam_envvar = 'MMDEVICETESTS_TEST_DEMOCAMERA_PATH'
 
 
 @pytest.fixture
@@ -17,7 +17,7 @@ def democam_path():
 
 
 def load_democam(democam_path):
-    return pymmdevice.module_interface.DeviceAdapterModule(democam_path)
+    return mmdevicetests.module_interface.DeviceAdapterModule(democam_path)
 
 
 def test_load_democam(democam_path):
@@ -35,8 +35,8 @@ def democam_module(democam_path):
 @pytest.mark.dependency()
 def test_democam_version(democam_module):
     democam_module.InitializeModuleData()
-    assert democam_module.GetModuleVersion() == pymmdevice.module_interface.MODULE_INTERFACE_VERSION
-    assert democam_module.GetDeviceInterfaceVersion() == pymmdevice.mmdevice.DEVICE_INTERFACE_VERSION
+    assert democam_module.GetModuleVersion() == mmdevicetests.module_interface.MODULE_INTERFACE_VERSION
+    assert democam_module.GetDeviceInterfaceVersion() == mmdevicetests.mmdevice.DEVICE_INTERFACE_VERSION
 
 
 @pytest.mark.dependency(depends=['test_democam_version'])

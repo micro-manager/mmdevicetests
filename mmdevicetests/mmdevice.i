@@ -1,4 +1,4 @@
-%module(package="pymmdevice", directors="1") mmdevice
+%module(package="mmdevicetests", directors="1") mmdevice
 
 %{
 #include "../mmCoreAndDevices/MMDevice/MMDeviceConstants.h"
