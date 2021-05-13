@@ -1,7 +1,7 @@
 import ctypes
 from . import mmdevice
 
-# Wrapper for module interface version 10
+MODULE_INTERFACE_VERSION = 10
 
 _ptr_wrap_func = {
     mmdevice.GenericDevice: mmdevice.wrap_ctypes_generic_pointer,
