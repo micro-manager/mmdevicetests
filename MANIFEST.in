@@ -1,0 +1,7 @@
+include mmCoreAndDevices/MMDevice/DeviceThreads.h
+include mmCoreAndDevices/MMDevice/DeviceUtils.h
+include mmCoreAndDevices/MMDevice/FixSnprintf.h
+include mmCoreAndDevices/MMDevice/ImageMetadata.h
+include mmCoreAndDevices/MMDevice/MMDevice.cpp
+include mmCoreAndDevices/MMDevice/MMDevice.h
+include mmCoreAndDevices/MMDevice/MMDeviceConstants.h
