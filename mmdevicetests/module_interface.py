@@ -55,6 +55,12 @@ class DeviceAdapterModule:
             ctypes.c_uint,
         ]
 
+        mv = self.GetModuleVersion()
+        if mv != MODULE_INTERFACE_VERSION:
+            raise RuntimeError(
+                "Device adapter module {} has module interface version {} (expected {})".format(
+                    path, mv, MODULE_INTERFACE_VERSION))
+
     def InitializeModuleData(self):
         self.dll.InitializeModuleData()
 
