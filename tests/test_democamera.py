@@ -1,6 +1,6 @@
 import os
-import mmdevicetests.mmdevice
-import mmdevicetests.module_interface
+from mmdevicetests import mmdevice
+from mmdevicetests import module_interface
 import pytest
 
 
@@ -17,7 +17,7 @@ def democam_path():
 
 
 def load_democam(democam_path):
-    return mmdevicetests.module_interface.DeviceAdapterModule(democam_path)
+    return module_interface.DeviceAdapterModule(democam_path)
 
 
 def test_load_democam(democam_path):
@@ -35,8 +35,8 @@ def democam_module(democam_path):
 @pytest.mark.dependency()
 def test_democam_version(democam_module):
     democam_module.InitializeModuleData()
-    assert democam_module.GetModuleVersion() == mmdevicetests.module_interface.MODULE_INTERFACE_VERSION
-    assert democam_module.GetDeviceInterfaceVersion() == mmdevicetests.mmdevice.DEVICE_INTERFACE_VERSION
+    assert democam_module.GetModuleVersion() == module_interface.MODULE_INTERFACE_VERSION
+    assert democam_module.GetDeviceInterfaceVersion() == mmdevice.DEVICE_INTERFACE_VERSION
 
 
 @pytest.mark.dependency(depends=['test_democam_version'])

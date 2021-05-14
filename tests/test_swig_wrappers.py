@@ -1,4 +1,4 @@
-import mmdevicetests.mmdevice as mmdevice
+from mmdevicetests import mmdevice
 
 
 def test_constants():
