@@ -1,3 +1,7 @@
 mmdevice_wrap.h
 mmdevice_wrap.cpp
 mmdevice.py
+
+# Extention built by 'pip install -e .'
+_mmdevice.*.pyd
+_mmdevice.*.so
