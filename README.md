@@ -26,5 +26,14 @@ Non-goals
 - Testing hardware performance or specs (the goal here is to test correctness of
   Micro-Manager device adapters, not the devices themselves)
 
+Code of Conduct
+---------------
 
 This project is covered by the [Micro-Manager Code of Conduct](https://github.com/micro-manager/micro-manager/blob/master/CodeOfConduct.md).
+
+License
+-------
+
+BSD-3 (see `LICENSE.txt`), which is the same license under which MMDevice (the
+Micro-Manager device interface library) is released. Other parts of
+Micro-Manager are under different licenses.
