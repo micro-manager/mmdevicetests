@@ -1,11 +1,35 @@
 %module(package="mmdevicetests", directors="1") mmdevice
 
+%include "cstring.i"
+
 %{
 #include "../mmCoreAndDevices/MMDevice/MMDeviceConstants.h"
 #include "../mmCoreAndDevices/MMDevice/MMDevice.h"
 %}
 
+// MM::Core is an interface for calls from device to core
 %feature("director") MM::Core;
+
+
+/*
+ * Handle some output parameters (currently incomplete)
+ */
+
+// MM::Device::GetProperty, MM::Core::GetDeviceProperty
+%cstring_bounded_output(char *value, 1024);
+
+// MM::Core::GetLoadedDeviceOfType
+%cstring_bounded_output(char *pDeviceName, 1024);
+
+// MM::Core::GetSerialAnswer
+%cstring_bounded_output(char *answer, 1024);
+
+// TODO MM::Core::ReadFromSerial, and MM::Device subclasses
+
+
+/*
+ * Wrap all classes in MMDevice.h, plus auxiliary ones used as parameters.
+ */
 
 %include "../mmCoreAndDevices/MMDevice/MMDeviceConstants.h"
 %include "../mmCoreAndDevices/MMDevice/MMDevice.h"
