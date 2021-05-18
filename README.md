@@ -25,3 +25,6 @@ Non-goals
   for that)
 - Testing hardware performance or specs (the goal here is to test correctness of
   Micro-Manager device adapters, not the devices themselves)
+
+
+This project is covered by the [Micro-Manager Code of Conduct](https://github.com/micro-manager/micro-manager/blob/master/CodeOfConduct.md).
